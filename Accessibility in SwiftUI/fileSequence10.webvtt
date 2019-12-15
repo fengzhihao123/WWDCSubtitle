@@ -1,0 +1,103 @@
+WEBVTT
+X-TIMESTAMP-MAP=MPEGTS:181083,LOCAL:00:00:00.000
+
+00:09:58.966 --> 00:10:00.300 align:middle line:-1
+它创建了一个垂直叠层
+
+00:10:01.068 --> 00:10:03.670 align:middle line:-1
+这个层是一个按键
+
+00:10:03.737 --> 00:10:05.372 align:middle line:-1
+它的前后是一些
+
+00:10:05.439 --> 00:10:06.273 align:middle line:-1
+文本
+
+00:10:08.342 --> 00:10:10.310 align:middle line:-1
+SwiftUI会创建三个
+
+00:10:10.377 --> 00:10:11.879 align:middle line:-1
+辅助功能元素
+
+00:10:11.945 --> 00:10:12.779 align:middle line:-1
+在这里
+
+00:10:12.846 --> 00:10:14.314 align:middle line:-1
+两个文本各对应一个
+
+00:10:14.381 --> 00:10:15.682 align:middle line:-1
+当然还有一个对应
+
+00:10:15.749 --> 00:10:16.583 align:middle line:-1
+按键
+
+00:10:17.451 --> 00:10:19.119 align:middle line:-1
+记住 辅助功能
+
+00:10:19.186 --> 00:10:20.787 align:middle line:-1
+元素 在SwiftUI里
+
+00:10:20.854 --> 00:10:23.590 align:middle line:-2
+不是UIViews
+或NSViews
+
+00:10:24.291 --> 00:10:26.493 align:middle line:-1
+而是SwiftUI自己的
+
+00:10:26.560 --> 00:10:27.895 align:middle line:-1
+辅助功能元素
+
+00:10:29.496 --> 00:10:31.064 align:middle line:-1
+我们所有人都努力确保
+
+00:10:31.131 --> 00:10:32.833 align:middle line:-1
+SwiftUI的标准
+
+00:10:32.900 --> 00:10:34.568 align:middle line:-1
+控件也尽可能
+
+00:10:34.635 --> 00:10:36.136 align:middle line:-1
+默认可用
+
+00:10:37.104 --> 00:10:38.038 align:middle line:-1
+注意 尽管这些
+
+00:10:38.105 --> 00:10:41.175 align:middle line:-1
+元素很简单
+
+00:10:41.241 --> 00:10:42.843 align:middle line:-1
+但包含了所有重要的
+
+00:10:42.910 --> 00:10:43.877 align:middle line:-1
+必要信息
+
+00:10:44.178 --> 00:10:45.279 align:middle line:-1
+它们好理解 是因为
+
+00:10:45.345 --> 00:10:46.180 align:middle line:-1
+有标签
+
+00:10:46.947 --> 00:10:48.682 align:middle line:-1
+可交互 是因为按键
+
+00:10:48.749 --> 00:10:49.583 align:middle line:-1
+有动作
+
+00:10:49.816 --> 00:10:51.084 align:middle line:-1
+可引导 是因为
+
+00:10:51.151 --> 00:10:52.386 align:middle line:-1
+排序正确
+
+00:10:54.821 --> 00:10:56.190 align:middle line:-1
+如我所说 SwiftUI
+
+00:10:56.256 --> 00:10:58.125 align:middle line:-1
+有一个辅助功能API
+
+00:10:58.192 --> 00:10:59.560 align:middle line:-1
+自定义元素
+
+00:10:59.626 --> 00:11:00.460 align:middle line:-1
+给你
+
