@@ -14,6 +14,8 @@ def get_video_subtitle_link(video_link):
   subtitle_prefix_url = '/'.join(strs)
   return subtitle_prefix_url
 
+
+
 def download_subtitles_file(prefix_subtitle_url, video_name):
   '''
   根据字幕链接下载字幕文件
@@ -38,6 +40,8 @@ def download_subtitles_file(prefix_subtitle_url, video_name):
     
     total_file_names.append(file_name)
 
+
+
 def combine_multiple_files(file_path, file_names):
   '''
   1、将字幕文件内容 - 》 string
@@ -49,29 +53,47 @@ def combine_multiple_files(file_path, file_names):
   with open(file_path + 'fileSequence.webvtt', 'w') as outfile:
     for i, fname in enumerate(file_names):
       with open(fname) as infile:
-        data = infile.read()
-        new_content = remove_webvtt_repetition_content(data, i != 0)
-        outfile.write(new_content)
+        # data = infile.read()
+        result = list()
+        lines = infile.readlines()
+        if i != 0:
+          empty_line = 0
+          for line in lines:
+            if empty_line > 1:
+              result.append(line)
+            if len(line) == 1:
+              empty_line += 1
+          content = "".join(result)
+        else:
+          content = "".join(lines)
+        outfile.write(content)
         os.remove(fname)
     print(f"complete {file_path}")
 
-def remove_webvtt_repetition_content(file_content, is_remove_head):
+
+
+def remove_webvtt_repetition_content(fname, is_remove_head):
   '''
   移除webvtt中重复内容
   example: `WEBVTT
            X-TIMESTAMP-MAP=MPEGTS:181083,LOCAL:00:00:00.000`
   is_remove_head: 是否移除头部重复部分,除第一个文件后面的文件需移除头部重复部分
   '''
-  data = file_content
-  if is_remove_head:
-    # 移除前两行 WEBVTT 格式化字符串
-    strs = data.split('\n')[3:]
-    # 获取头部重复行数
-    first = int(strs[0].split('-')[-1])
-    strs = strs[first:]
-    return '\n'.join(strs)
-  return data
-
+  with open(fname) as file:
+    content = file.read()
+    print(f'''content11111{ content}''')
+    if is_remove_head:
+      result = list()
+      empty_line = 0
+      lines = file.readlines()
+      for line in lines:
+        if empty_line > 1:
+          result.append(line)
+        if len(line) == 1:
+          empty_line += 1
+      content = "".join(result)
+  print(f'''content22222{ content}''')
+  return content
 
 
 
@@ -85,6 +107,8 @@ def get_video_names(video_name_section_list):
     for h4 in h4_list:
       video_names.append(h4.text)
   return video_names
+
+
 
 session = HTMLSession()
 section_class = 'column large-8 small-8  padding-top-small padding-bottom-small gutter no-padding-top no-padding-bottom'
