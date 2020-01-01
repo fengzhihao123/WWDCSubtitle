@@ -21,6 +21,7 @@ def download_subtitles_file(subtitle_urls, video_name):
   '''
   根据字幕链接下载字幕文件
   '''
+  root_path = '/Users/fengzhihao/WorkSpace/Code/Python/WWDCSubtitle/'
   file_path = root_path + video_name
   if not os.path.exists(file_path):
     os.makedirs(file_path)
@@ -46,6 +47,7 @@ def combine_multiple_files(file_path, file_names):
   4、删除片段字幕文件
   '''
   # 此处待优化：将文件直接依次写入一个文件中
+  print(file_names)
   with open(file_path + 'fileSequence.webvtt', 'w') as outfile:
     for i, fname in enumerate(file_names):
       with open(fname) as infile:
@@ -107,43 +109,17 @@ def get_subtitle_count(prefix, prog_index_url, video_name):
   '''
   获取当前视频的字幕个数，及字幕名字
   '''
-  file_path = root_path + video_name
-  if os.path.exists(file_path):
-    # 已经存在此文件夹
-    return
-
   r = requests.get(prog_index_url)
   content = str(r.content)[1:]
   total_list = content.split('\\n')[6:-1]
   subtitles = total_list[0::2]
   complete_subtitles = []
   for subtitle in subtitles:
-    complete_subtitles.append(prefix + '/subtitles/zho/' + subtitle)
-  print(f'''start {video_name}''')
-  print(complete_subtitles)
+    complete_subtitles.append(prefix + subtitle)
+
   download_subtitles_file(complete_subtitles, video_name)
 
+profix = 'https://p-events-delivery.akamaized.net/3004qzusahnbjppuwydgjzsdyzsippar/vod3/cc2/zho2/'
+prog_index_url = 'https://p-events-delivery.akamaized.net/3004qzusahnbjppuwydgjzsdyzsippar/vod3/cc2/zho2/prog_index.m3u8'
 
-root_path = '/Users/fengzhihao/WorkSpace/Code/Python/WWDCSubtitle/'
-
-session = HTMLSession()
-section_class = 'column large-8 small-8  padding-top-small padding-bottom-small gutter no-padding-top no-padding-bottom'
-r = session.get('https://developer.apple.com/videos/wwdc2019/')
-video_link_section_list = r.html.find('section.column.large-4.small-4.no-padding-top.no-padding-bottom')
-video_name_section_list = r.html.find('section.column.large-8.small-8.padding-top-small.padding-bottom-small.gutter.no-padding-top.no-padding-bottom')
-video_links = []
-
-wwdc_2019_host = 'https://developer.apple.com'
-video_names = get_video_names(video_name_section_list)
-for i, section in enumerate(video_link_section_list):
-  video_link = wwdc_2019_host + section.find('a.video-image-link', first = True).attrs['href']
-  prefix = get_video_subtitle_link(video_link)
-  prog_index_url = prefix + '/subtitles/zho/prog_index.m3u8'
-  get_subtitle_count(prefix, prog_index_url, video_names[i] + '/')
-
-
-
-'''
-keynote
-
-'''
+get_subtitle_count(profix, prog_index_url, 'keynote/')
